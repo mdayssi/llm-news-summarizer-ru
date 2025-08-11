@@ -211,3 +211,5 @@ models/
 indexes/
 *.ipynb_checkpoints/
 .cache/
+.DS_Store
+data/processed/
