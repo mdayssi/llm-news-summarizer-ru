@@ -1,0 +1,2 @@
+system,split,rouge1,rouge2,rougeL,rougeLsum,avg_pred_len_tokens,k,n_examples
+extractive_lead3,validation_full,0.22966416221096536,0.08414394187762991,0.22196393748599946,0.2218676485892185,54.8535091851154,3,6369
