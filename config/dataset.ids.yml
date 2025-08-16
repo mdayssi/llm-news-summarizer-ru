@@ -1,0 +1,4 @@
+splits_ids:
+  train_ids: data/splits/gazeta_train_ids.csv
+  val_ids: data/splits/gazeta_validation_ids.csv
+  test_ids: data/splits/gazeta_test_ids.csv

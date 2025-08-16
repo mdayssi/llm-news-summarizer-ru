@@ -213,3 +213,6 @@ indexes/
 .cache/
 .DS_Store
 data/processed/
+.virtual_documents/
+.idea/
+tmp.py

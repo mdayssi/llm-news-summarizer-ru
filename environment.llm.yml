@@ -1,0 +1,57 @@
+name: llm-news
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+
+  # Jupyter
+  - jupyterlab
+  - ipykernel
+  - ipywidgets
+  - jupyterlab-lsp
+  - python-lsp-server
+  - pyright
+
+  # численные / ML
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+
+  # визуализация
+  - matplotlib
+  - seaborn
+  - plotly
+
+  # PyTorch (CPU на Intel Mac)
+  - pytorch
+  - torchvision
+  - torchaudio
+
+  # HF / NLP
+  - transformers
+  - datasets
+  - tokenizers
+  - sentencepiece
+  - accelerate
+  - evaluate
+  - nltk
+  - spacy
+  - tqdm
+  - rich
+  - pyyaml
+  - python-dotenv
+
+  # dev-инструменты (по желанию)
+  - black
+  - ruff
+  - isort
+  - nbstripout
+
+  - pip:
+      - rouge-score
+      - razdel
+      - jupyterlab-code-formatter
+      - ruff-lsp
+      - huggingface_hub

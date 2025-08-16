@@ -1,0 +1,15 @@
+cuda_model:
+  device: cuda
+  model_id: Qwen/Qwen2-7B-Instruct
+  n_eval: null
+  use_4bit: True
+  device_map: auto
+
+
+
+cpu_model:
+  device: cpu
+  model_id: Qwen/Qwen2-0.5B-Instruct
+  n_eval: 200
+  use_4bit: False
+  device_map: null
