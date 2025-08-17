@@ -51,6 +51,7 @@ dependencies:
 
   - pip:
       - rouge-score
+      - bert-score
       - razdel
       - jupyterlab-code-formatter
       - ruff-lsp
