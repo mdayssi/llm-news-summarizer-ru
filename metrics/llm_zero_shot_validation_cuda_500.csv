@@ -1,0 +1,2 @@
+system,split,rouge1,rouge2,rougeL,rougeLsum,bertscore_precision,bertscore_recall,bertscore_f1,avg_len_pred,avg_len_ref,len_ratio_pred_to_ref,k,n_examples
+extractive_lead3,validation_full,0.252879736610214,0.09644614650765541,0.2456477749332227,0.24771076457261973,0.8671674896478653,0.8825865497589112,0.8747395805120468,62.528,45.34,1.3790913101014555,,500

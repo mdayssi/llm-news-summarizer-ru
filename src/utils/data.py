@@ -5,7 +5,6 @@ import torch
 import pandas as pd
 from razdel import sentenize
 from statistics import mean
-from transformers.models.auto.video_processing_auto import model_type
 
 
 def clean(s: pd.Series) -> pd.Series:
@@ -77,3 +76,7 @@ def get_all_scores(preds: List[str], refs: List[str], bert_model="xlm-roberta-ba
     avg_len = get_avglen(preds=preds, refs=refs)
 
     return {**rouge_scores, **bert_scores, **avg_len}
+
+def max_len(df: pd.DataFrame, tokenizer, title="text") -> Optional[int]:
+    maxx = df[title].map(lambda x: len(tokenizer.encode(x, add_special_tokens=False))).max()
+    return maxx
