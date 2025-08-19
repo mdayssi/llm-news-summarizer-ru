@@ -19,3 +19,4 @@ def assemble_msgs(exs, tgt_text, SYSTEM_PROMPT):
         msgs.append({"role": "assistant", "content": y})
     msgs.append({"role": "user", "content": f"Задача: кратко резюмируй.\n\nТекст статьи:\n{tgt_text}"})
     return msgs
+

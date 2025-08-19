@@ -216,3 +216,4 @@ data/processed/
 .virtual_documents/
 .idea/
 tmp.py
+src/checkpoints

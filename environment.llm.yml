@@ -56,3 +56,6 @@ dependencies:
       - jupyterlab-code-formatter
       - ruff-lsp
       - huggingface_hub
+      - peft
+      - trl
+      - accelerate
