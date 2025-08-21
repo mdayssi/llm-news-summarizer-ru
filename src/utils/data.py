@@ -19,6 +19,8 @@ def clean(s: pd.Series) -> pd.Series:
 
 
 def to_rougeLsum_text(text: Optional[str]) -> Optional[str]:
+    if not text:
+        return None
     return "\n".join(s.text.strip() for s in sentenize(text))
 
 
@@ -36,7 +38,24 @@ def get_rouge_f1(preds: List[str], refs: List[str]) -> Dict[str, float]:
     return scores
 
 
-def get_bertscorepreds(preds: List[str], refs: List[str], bert_model="xlm-roberta-base", device=None, batch_size=8) -> Dict[str, float]:
+def dpo_rouge_lsum(preds: List[str], refs: List[str]) -> List[float]:
+    metric = evaluate.load("rouge")
+    preds_proc = [to_rougeLsum_text(p) for p in preds]
+    refs_proc = [to_rougeLsum_text(r) for r in refs]
+    out = []
+    for p, r in zip(preds_proc, refs_proc):
+        score = metric.compute(
+            predictions=[p],
+            references=[r],
+            rouge_types=["rougeLsum"],
+            use_stemmer=True,
+        )
+        out.append(score["rougeLsum"])
+    return out
+
+
+def get_bertscorepreds(preds: List[str], refs: List[str], bert_model="xlm-roberta-base", device=None, batch_size=8) -> \
+Dict[str, float]:
     metric = evaluate.load("bertscore")
     if device is None:
         device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -48,6 +67,7 @@ def get_bertscorepreds(preds: List[str], refs: List[str], bert_model="xlm-robert
         lang="ru",
         rescale_with_baseline=False,
         batch_size=batch_size,
+        device=device,
     )
 
     scores = {
@@ -57,6 +77,7 @@ def get_bertscorepreds(preds: List[str], refs: List[str], bert_model="xlm-robert
     }
 
     return scores
+
 
 def get_avglen(preds: List[str], refs: List[str]) -> Dict[str, float]:
     avg_len_pred = mean(len(p.split()) for p in preds)
@@ -69,13 +90,16 @@ def get_avglen(preds: List[str], refs: List[str]) -> Dict[str, float]:
 
     return scores
 
-def get_all_scores(preds: List[str], refs: List[str], bert_model="xlm-roberta-base", device=None, batch_size=8) -> Dict[str, float]:
 
+def get_all_scores(preds: List[str], refs: List[str], bert_model="xlm-roberta-base", device=None, batch_size=8) -> Dict[
+    str, float]:
     rouge_scores = get_rouge_f1(preds=preds, refs=refs)
-    bert_scores = get_bertscorepreds(preds=preds, refs=refs, bert_model=bert_model, device=device, batch_size=batch_size)
+    bert_scores = get_bertscorepreds(preds=preds, refs=refs, bert_model=bert_model, device=device,
+                                     batch_size=batch_size)
     avg_len = get_avglen(preds=preds, refs=refs)
 
     return {**rouge_scores, **bert_scores, **avg_len}
+
 
 def max_len(df: pd.DataFrame, tokenizer, title="text") -> Optional[int]:
     maxx = df[title].map(lambda x: len(tokenizer.encode(x, add_special_tokens=False))).max()
