@@ -1,2 +1,0 @@
-system,split,rouge1,rouge2,rougeL,rougeLsum,avg_pred_len_tokens,k,n_examples
-extractive_lead3,validation_full,0.22936961912274295,0.08407536484996439,0.22207093772696362,0.22652612173265296,54.8535091851154,3,6369

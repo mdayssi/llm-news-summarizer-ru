@@ -1,2 +1,0 @@
-system,split,rouge1,rouge2,rougeL,rougeLsum,avg_pred_len_tokens,k,n_examples
-llm_zero_shot_Qwen2-7B-Instruct,validation_400,0.258977896355544,0.09714169515480256,0.25229614234664555,0.2532451415082204,62.4175,,400
