@@ -1,0 +1,2 @@
+system,split,rouge1,rouge2,rougeL,rougeLsum,bertscore_precision,bertscore_recall,bertscore_f1,avg_len_pred,avg_len_ref,len_ratio_pred_to_ref,k,n_examples
+SRT+DPO QLoRA,validation_full,0.2351098414125886,0.08785687304144531,0.225666527790413,0.22978180041800916,0.8617472146451474,0.8846057520806789,0.8729501514136792,74.20125,45.60625,1.626997396190215,,800
